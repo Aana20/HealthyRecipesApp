@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/meniu_image"> <!-- Fundal aplicat aici -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Container pentru bara de căutare cu fundal -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/bg_search_bar"> <!-- Fundal pentru bara de căutare -->
+
+            <EditText
+                android:id="@+id/searchEditText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:minHeight="48dp"
+                android:minWidth="48dp"
+                android:hint="Caută o rețetă"
+                android:padding="30dp"
+                android:inputType="text"/>
+            <!-- android:background="@drawable/searchEditText"-->
+
+            <ImageView
+                android:id="@+id/searchButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_search"
+                android:contentDescription="Search icon"
+                android:layout_marginStart="8dp"/>
+        </LinearLayout>
+
+        <!-- Secțiunea "După felul de mâncare" -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="După felul de mâncare"
+            android:textStyle="bold"
+            android:textSize="14dp"
+            android:textColor="#000000"
+            android:drawablePadding="8dp"
+            android:layout_marginBottom="8dp"/>
+        <!-- android:drawableLeft="@drawable/ic_food_type"-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <CheckBox
+                android:id="@+id/checkBox_breakfast"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:minWidth="48dp"
+                android:text="Mic dejun"/>
+
+            <CheckBox
+                android:id="@+id/checkBox_lunch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:minWidth="48dp"
+                android:text="Prânz"/>
+        </LinearLayout>
+
+        <!-- Secțiunea "După preferințe" -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="După preferințe"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:drawablePadding="8dp"
+            android:layout_marginBottom="8dp"/>
+        <!-- android:drawableLeft="@drawable/ic_preferences"-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <CheckBox
+                android:id="@+id/checkBox_sugar_free"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:minWidth="48dp"
+                android:text="Fără zahăr"/>
+
+            <CheckBox
+                android:id="@+id/checkBox_low_carb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:minWidth="48dp"
+                android:text="Low carb"/>
+        </LinearLayout>
+
+        <!-- Secțiunea "Alergeni" -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Alergeni"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:drawablePadding="8dp"
+            android:layout_marginBottom="8dp"/>
+        <!-- android:drawableLeft="@drawable/ic_allergens"-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <CheckBox
+                android:id="@+id/checkBox_gluten_free"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:minWidth="48dp"
+                android:text="Fără gluten"/>
+
+            <CheckBox
+                android:id="@+id/checkBox_lactose_free"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:minWidth="48dp"
+                android:text="Fără lactate"/>
+        </LinearLayout>
+
+        <!-- Secțiunea "După ingrediente" -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="După ingrediente"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:drawablePadding="8dp"
+            android:layout_marginBottom="8dp"/>
+        <!-- android:drawableLeft="@drawable/ic_ingredients"-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <CheckBox
+                android:id="@+id/checkBox_chicken"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:text="Pui"/>
+
+            <CheckBox
+                android:id="@+id/checkBox_avocado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:minWidth="48dp"
+                android:text="Avocado"
+                android:textColor="#000000"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>
