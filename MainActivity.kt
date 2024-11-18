@@ -28,12 +28,12 @@ class MainActivity : AppCompatActivity() {
             val searchQuery = searchEditText.text.toString()
             val filters = mutableMapOf<String, Boolean>()
             filters["Mic dejun"] = checkBoxBreakfast.isChecked
-            filters["lunch"] = checkBoxLunch.isChecked
+            filters["Pranz"] = checkBoxLunch.isChecked
             filters["sugarFree"] = checkBoxSugarFree.isChecked
             filters["Low carb"] = checkBoxLowCarb.isChecked
             filters["glutenFree"] = checkBoxGlutenFree.isChecked
             filters["lactoseFree"] = checkBoxLactoseFree.isChecked
-            filters["Pui"] = checkBoxChicken.isChecked // Pentru rețetele cu pui
+            filters["Pui"] = checkBoxChicken.isChecked
 
             val intent = Intent(this, RecipeListActivity::class.java)
             intent.putExtra("searchQuery", searchQuery)

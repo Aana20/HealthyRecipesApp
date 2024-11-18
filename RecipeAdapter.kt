@@ -1,5 +1,6 @@
 package com.example.healthyrecipesapp
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,7 +33,6 @@ class RecipeAdapter(
         holder.recipeCalories.text = "${recipe.calories} kcal"
         holder.recipeServings.text = "${recipe.servings} porții"
 
-        // Set image from drawable using resource name
         val imageResId = holder.itemView.context.resources.getIdentifier(
             recipe.imageResId, "drawable", holder.itemView.context.packageName
         )
