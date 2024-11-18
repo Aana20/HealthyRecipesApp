@@ -2,27 +2,45 @@ package com.example.healthyrecipesapp
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main) // încarcă layout-ul
+        setContentView(R.layout.activity_main)
 
+        val searchEditText = findViewById<EditText>(R.id.searchEditText)
         val searchButton = findViewById<ImageView>(R.id.searchButton)
+
+        val checkBoxBreakfast = findViewById<CheckBox>(R.id.checkBox_breakfast)
+        val checkBoxLunch = findViewById<CheckBox>(R.id.checkBox_lunch)
+        val checkBoxSugarFree = findViewById<CheckBox>(R.id.checkBox_sugar_free)
+        val checkBoxLowCarb = findViewById<CheckBox>(R.id.checkBox_low_carb)
+        val checkBoxGlutenFree = findViewById<CheckBox>(R.id.checkBox_gluten_free)
+        val checkBoxLactoseFree = findViewById<CheckBox>(R.id.checkBox_lactose_free)
+        val checkBoxChicken = findViewById<CheckBox>(R.id.checkBox_chicken)
+        val checkBoxAvocado = findViewById<CheckBox>(R.id.checkBox_avocado)
+
         searchButton.setOnClickListener {
-            val searchQuery = findViewById<EditText>(R.id.searchEditText).text.toString()
-            if (searchQuery.isNotEmpty()) {
-                val intent = Intent(this, RecipeDetailsActivity::class.java)
-                intent.putExtra("query", searchQuery)
-                startActivity(intent)
-            } else {
-                Toast.makeText(this, "Introduceți un text pentru căutare", Toast.LENGTH_SHORT)
-                    .show()
-            }
+            val searchQuery = searchEditText.text.toString()
+            val filters = mutableMapOf<String, Boolean>()
+            filters["breakfast"] = checkBoxBreakfast.isChecked
+            filters["lunch"] = checkBoxLunch.isChecked
+            filters["sugarFree"] = checkBoxSugarFree.isChecked
+            filters["lowCarb"] = checkBoxLowCarb.isChecked
+            filters["glutenFree"] = checkBoxGlutenFree.isChecked
+            filters["lactoseFree"] = checkBoxLactoseFree.isChecked
+            filters["chicken"] = checkBoxChicken.isChecked
+            filters["avocado"] = checkBoxAvocado.isChecked
+
+            val intent = Intent(this, RecipeListActivity::class.java)
+            intent.putExtra("searchQuery", searchQuery)
+            intent.putExtra("filters", HashMap(filters))
+            startActivity(intent)
         }
     }
 }
