@@ -1,36 +1,30 @@
 package com.example.healthyrecipesapp
 
+import com.example.healthyrecipesapp.Recipe
 import android.os.Bundle
-import android.view.MenuItem
-import android.widget.ImageButton
-import androidx.appcompat.app.AppCompatActivity
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 
 class RecipeDetailsActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recipe_details)
 
-        // Afișează un mesaj temporar pe ecran pentru a verifica navigarea
-        val messageTextView: TextView = findViewById(R.id.temporaryText)
-        messageTextView.text = "Ecranul de detalii al rețetei"
+        val recipe = intent.getSerializableExtra("recipe") as? Recipe
 
+        val recipeImage = findViewById<ImageView>(R.id.recipeImage)
+        val recipeTitle = findViewById<TextView>(R.id.recipeTitle)
+        val recipeTime = findViewById<TextView>(R.id.recipeTime)
+        val recipeServings = findViewById<TextView>(R.id.recipeServings)
+        val recipeCalories = findViewById<TextView>(R.id.recipeCalories)
 
-        // Setează titlul în Action Bar
-        supportActionBar?.title = "Detalii Rețetă"
-
-        // Activează butonul „Up”
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-    }
-
-    // Gestionează acțiunea de click pe butonul „Up”
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            android.R.id.home -> {
-                finish()  // Închide activitatea curentă
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
+        recipe?.let {
+            recipeTitle.text = it.title
+            recipeTime.text = "Time: ${it.time}"
+            recipeServings.text = "Servings: ${it.servings}"
+            recipeCalories.text = "Calories: ${it.calories} kcal"
         }
     }
 }
