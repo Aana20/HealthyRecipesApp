@@ -32,8 +32,11 @@ class RecipeAdapter(
         holder.recipeCalories.text = "${recipe.calories} kcal"
         holder.recipeServings.text = "${recipe.servings} porții"
 
-        // Setează imaginea din drawable
-        holder.recipeImage.setImageResource(recipe.imageResId)
+        // Set image from drawable using resource name
+        val imageResId = holder.itemView.context.resources.getIdentifier(
+            recipe.imageResId, "drawable", holder.itemView.context.packageName
+        )
+        holder.recipeImage.setImageResource(imageResId)
 
         holder.itemView.setOnClickListener { onRecipeClick(recipe) }
     }

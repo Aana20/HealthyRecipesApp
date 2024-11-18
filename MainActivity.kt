@@ -23,19 +23,17 @@ class MainActivity : AppCompatActivity() {
         val checkBoxGlutenFree = findViewById<CheckBox>(R.id.checkBox_gluten_free)
         val checkBoxLactoseFree = findViewById<CheckBox>(R.id.checkBox_lactose_free)
         val checkBoxChicken = findViewById<CheckBox>(R.id.checkBox_chicken)
-        val checkBoxAvocado = findViewById<CheckBox>(R.id.checkBox_avocado)
 
         searchButton.setOnClickListener {
             val searchQuery = searchEditText.text.toString()
             val filters = mutableMapOf<String, Boolean>()
-            filters["breakfast"] = checkBoxBreakfast.isChecked
+            filters["Mic dejun"] = checkBoxBreakfast.isChecked
             filters["lunch"] = checkBoxLunch.isChecked
             filters["sugarFree"] = checkBoxSugarFree.isChecked
-            filters["lowCarb"] = checkBoxLowCarb.isChecked
+            filters["Low carb"] = checkBoxLowCarb.isChecked
             filters["glutenFree"] = checkBoxGlutenFree.isChecked
             filters["lactoseFree"] = checkBoxLactoseFree.isChecked
-            filters["chicken"] = checkBoxChicken.isChecked
-            filters["avocado"] = checkBoxAvocado.isChecked
+            filters["Pui"] = checkBoxChicken.isChecked // Pentru rețetele cu pui
 
             val intent = Intent(this, RecipeListActivity::class.java)
             intent.putExtra("searchQuery", searchQuery)

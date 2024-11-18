@@ -1,0 +1,39 @@
+[
+  {
+    "title": "Blueberry Muffins",
+    "time": "10 min",
+    "calories": 250,
+    "servings": 2,
+    "imageResId": "meniu_image",
+    "tags": ["dessert", "Low carb"],
+    "ingredients": ["blueberries", "flour", "sugar"]
+  },
+  {
+    "title": "Chocolate Chip Muffins",
+    "time": "15 min",
+    "calories": 300,
+    "servings": 4,
+    "imageResId": "meniu_image",
+    "tags": ["dessert", "sweet"],
+    "ingredients": ["chocolate", "flour", "sugar"]
+  },
+  {
+    "title": "Banana Muffins",
+    "time": "12 min",
+    "calories": 220,
+    "servings": 3,
+    "imageResId": "meniu_image",
+    "tags": ["Mic dejun", "sweet"],
+    "ingredients": ["banana", "flour", "sugar"]
+  },
+
+  {
+    "title": "Salata pui",
+    "time": "12 min",
+    "calories": 220,
+    "servings": 3,
+    "imageResId": "meniu_image",
+    "tags": ["Pranz","Pui"],
+    "ingredients": ["Pui"]
+  }
+]

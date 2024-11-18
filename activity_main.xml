@@ -70,7 +70,7 @@
                 android:layout_height="wrap_content"
                 android:minHeight="48dp"
                 android:minWidth="48dp"
-                android:text="Prânz"/>
+                android:text="Pranz"/>
         </LinearLayout>
 
         <!-- Secțiunea "După preferințe" -->
