@@ -5,8 +5,9 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class RecipeListActivity : AppCompatActivity() {
 
@@ -22,37 +23,59 @@ class RecipeListActivity : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         adapter = RecipeAdapter(recipes) { recipe ->
+            // Navighează către detaliile rețetei
             val intent = Intent(this, RecipeDetailsActivity::class.java)
             intent.putExtra("title", recipe.title)
             intent.putExtra("time", recipe.time)
             intent.putExtra("calories", recipe.calories)
             intent.putExtra("servings", recipe.servings)
+            intent.putExtra("ingredients", recipe.ingredients)
+            intent.putExtra("tags", recipe.tags)
             startActivity(intent)
         }
         recyclerView.adapter = adapter
 
-        val searchQuery = intent.getStringExtra("searchQuery") ?: ""
+        val searchQuery = intent.getStringExtra("searchQuery")
         val filters = intent.getSerializableExtra("filters") as? Map<String, Boolean> ?: emptyMap()
 
-        loadRecipesFromJson(searchQuery, filters)
+        loadRecipes(searchQuery, filters)
     }
 
-    private fun loadRecipesFromJson(searchQuery: String, filters: Map<String, Boolean>) {
-        val json = resources.openRawResource(R.raw.recipes).bufferedReader().use { it.readText() }
-        val gson = Gson()
-        val type = object : TypeToken<List<Recipe>>() {}.type
-        val allRecipes: List<Recipe> = gson.fromJson(json, type)
+    private fun loadRecipes(searchQuery: String?, filters: Map<String, Boolean>) {
+        val db = AppDatabase.getDatabase(this)
+        val recipeDao = db.recipeDao()
 
-        val filteredRecipes = allRecipes.filter { recipe ->
-            val matchesQuery = recipe.title.contains(searchQuery, ignoreCase = true)
-            val matchesFilters = filters.all { (key, isChecked) ->
-                if (isChecked) recipe.tags.contains(key) else true
+        CoroutineScope(Dispatchers.IO).launch {
+            val filteredRecipes = recipeDao.getFilteredRecipes(
+                searchQuery = searchQuery,
+                filterBreakfast = if (filters["breakfast"] == true) 1 else 0,
+                filterLunch = if (filters["lunch"] == true) 1 else 0,
+                filterDinner = if (filters["dinner"] == true) 1 else 0,
+                filterDessert = if (filters["dessert"] == true) 1 else 0,
+                filterSnacks = if (filters["snacks"] == true) 1 else 0,
+                filterSugarFree = if (filters["sugar_free"] == true) 1 else 0,
+                filterLowCarb = if (filters["low_carb"] == true) 1 else 0,
+                filterHighProtein = if (filters["high_protein"] == true) 1 else 0,
+                filterGlutenFree = if (filters["gluten_free"] == true) 1 else 0,
+                filterLactoseFree = if (filters["lactose_free"] == true) 1 else 0,
+                filterEggFree = if (filters["egg_free"] == true) 1 else 0,
+                filterChicken = if (filters["chicken"] == true) 1 else 0,
+                filterTon = if (filters["ton"] == true) 1 else 0,
+                filterBeef = if (filters["beef"] == true) 1 else 0,
+                filterEgg = if (filters["egg"] == true) 1 else 0,
+                filterTofu = if (filters["tofu"] == true) 1 else 0,
+                filterRice = if (filters["rice"] == true) 1 else 0,
+                filterOvaz = if (filters["ovaz"] == true) 1 else 0,
+                filterBrocoli = if (filters["brocoli"] == true) 1 else 0,
+                filterAvocado = if (filters["avocado"] == true) 1 else 0,
+                filterCartofDulce = if (filters["cartof_dulce"] == true) 1 else 0
+            )
+
+            recipes.clear()
+            recipes.addAll(filteredRecipes)
+            runOnUiThread {
+                adapter.notifyDataSetChanged()
             }
-            matchesQuery && matchesFilters
         }
-
-        recipes.clear()
-        recipes.addAll(filteredRecipes)
-        adapter.notifyDataSetChanged()
     }
 }

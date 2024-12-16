@@ -1,11 +1,16 @@
 package com.example.healthyrecipesapp
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(tableName = "recipes")
 data class Recipe(
+    @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val title: String,
     val time: String,
     val calories: Int,
     val servings: Int,
-    val imageResId: String, // Drawable name for the image
-    val tags: List<String>, // Tags like "breakfast", "lunch"
-    val ingredients: List<String> // Ingredients
+    val imageResId: String,
+    val tags: String,
+    val ingredients: String
 )
