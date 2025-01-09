@@ -1,5 +1,6 @@
 package com.example.healthyrecipesapp
 
+//import RecipeDetailsActivity
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -23,14 +24,18 @@ class RecipeListActivity : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         adapter = RecipeAdapter(recipes) { recipe ->
-            // Navighează către detaliile rețetei
-            val intent = Intent(this, RecipeDetailsActivity::class.java)
-            intent.putExtra("title", recipe.title)
-            intent.putExtra("time", recipe.time)
-            intent.putExtra("calories", recipe.calories)
-            intent.putExtra("servings", recipe.servings)
-            intent.putExtra("ingredients", recipe.ingredients)
-            intent.putExtra("tags", recipe.tags)
+            val intent = Intent(this, RecipeDetailsActivity::class.java).apply {
+                putExtra("imageResId", recipe.imageResId)
+                putExtra("title", recipe.title)
+                putExtra("time", recipe.time)
+                putExtra("servings", recipe.servings)
+                putExtra("instructions", recipe.instructions)
+                putExtra("ingredients", recipe.ingredients)
+                putExtra("calories", recipe.calories)
+                putExtra("protein", recipe.protein) // Transmite valoarea reală
+                putExtra("carbs", recipe.carbs)     // Transmite valoarea reală
+                putExtra("fats", recipe.fats)       // Transmite valoarea reală
+            }
             startActivity(intent)
         }
         recyclerView.adapter = adapter

@@ -80,7 +80,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-       // populateDatabase()
+        populateDatabase()
     }
 
     private fun populateDatabase() {
@@ -88,7 +88,7 @@ class MainActivity : AppCompatActivity() {
         val recipeDao = db.recipeDao()
 
         CoroutineScope(Dispatchers.IO).launch {
-          // recipeDao.deleteAllRecipes() // Șterge toate rețetele existente pentru a evita duplicarea
+           recipeDao.deleteAllRecipes() // Șterge toate rețetele existente pentru a evita duplicarea
 
             recipeDao.insertRecipe(
                 Recipe(
@@ -98,10 +98,20 @@ class MainActivity : AppCompatActivity() {
                     servings = 2,
                     imageResId = "meniu_image",
                     tags = "dessert,low_carb",
-                    ingredients = "blueberries,flour,sugar"
+                    ingredients = "blueberries,flour,sugar",
+                    instructions = "Brioșe cu cacao sănătoase și ușor de preparat din doar 5 ingrediente. Brioșele nu conțin făină, nu conțin gluten și sunt îndulcite cu miere. La prepararea acestora puteți folosi cacao sau carob. Pregătiți-le pentru micul dejun sau ca gustare de dimineață, dar sunt perfecte și ca desert sănătos pentru după-amiază.\n" +
+                            "\n" +
+                            "Pentru a pregăti aceste brioșe aveți nevoie doar de cacao, ouă, miere, ulei de cocos și bicarbonat de sodiu. Credeți sau nu, cacaoa înlocuiește complet făina din brioșe, și cum folosim până la 4 linguri de cacao, acestea vor avea un gust pregnant de ciocolată. Aceste brioșe fără gluten sunt perfecte nu doar pentru cei care suferă de boala celiacă, dar și pentru persoanele care doresc să evite făina din alte motive. Iar câteodată cu toții ne dorim să încercăm ceva diferit, nu-i așa? Cred că această rețetă este ideală pentru toți începătorii într-ale bucătăriei sănătoase.\n" +
+                            "\n" +
+                            "Dacă doriți să obțineți mai multe brioșe (ceea ce cred că e cazul), dublați sau triplați cantitatea de ingrediente listate în rețetă. Vă recomand să folosiți forme din silicon pentru a coace brioșele.\n" +
+                            "\n" +
+                            "Aceste brioșe sănătoase fără făină cu cacao se numără printre deserturile mele preferate, în plus, sunt extrem de ușor de preparat. Trebuie să le încercați cât mai curând, cred că vă vor plăcea mult. Iar pe lângă brioșe, din această rețetă puteți pregăti un flan de cacao sănătos.",
+                    protein = 5,
+                    carbs = 20,
+                    fats = 10
                 )
             )
-
+/*
             recipeDao.insertRecipe(
                 Recipe(
                     title = "Chicken Salad",
@@ -124,7 +134,7 @@ class MainActivity : AppCompatActivity() {
                     tags = "breakfast,sweet",
                     ingredients = "banana,flour,sugar,butter"
                 )
-            )
+            )*/
         }
     }
 }
