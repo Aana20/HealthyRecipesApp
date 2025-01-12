@@ -5,9 +5,26 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.example.healthyrecipesapp.R
+
 
 class RecipeDetailsActivity : AppCompatActivity() {
+    private val imageResourceMap = mapOf(
+        "meniu_image" to R.drawable.meniu_image,
+        "blueberry_muffins" to R.drawable.blueberry_muffins,
+        "lipie_cu_ton" to R.drawable.lipie_cu_ton,
+        "briose_ou_ciuperci" to R.drawable.briose_ou_ciuperci, // Adaugă alte imagini aici
+        "mouse_cu_tofu" to R.drawable.mouse_cu_tofu,
+        "biscuiti_cu_banana" to R.drawable.biscuiti_cu_banana,
+        "wrap_avocado" to R.drawable.wrap_avocado,
+        "pizza" to R.drawable.pizza,
+        "pui" to R.drawable.pui,
+        "conopida" to R.drawable.conopida,
+        "brocoli" to R.drawable.brocoli,
+        "cartof_dulce" to R.drawable.cartof_dulce,
+        "orez" to R.drawable.orez,
+        "vita" to R.drawable.vita,
+        "default_image" to R.drawable.meniu_image
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,19 +43,22 @@ class RecipeDetailsActivity : AppCompatActivity() {
         val fats = intent.getIntExtra("fats", 0)
 
         // Setăm imaginea
+
         val imageView = findViewById<ImageView>(R.id.recipeImage)
-        val imageResource = resources.getIdentifier(imageResId, "drawable", packageName)
+        // Obține ID-ul imaginii din mapare sau folosește imaginea implicită
+        val imageResource = imageResourceMap[imageResId] ?: R.drawable.meniu_image
         imageView.setImageResource(imageResource)
+
 
         // Setăm datele în layout
         findViewById<TextView>(R.id.recipeTitle).text = title
-        findViewById<TextView>(R.id.recipeTime).text = "Timp de pregătire: $time"
-        findViewById<TextView>(R.id.recipeServings).text = "Cantitate rezultată: $servings porții"
+        findViewById<TextView>(R.id.recipeTime).text = getString(R.string.recipe_time, time)
+        findViewById<TextView>(R.id.recipeServings).text = getString(R.string.recipe_servings, servings)
         findViewById<TextView>(R.id.recipeInstructions).text = instructions
-        findViewById<TextView>(R.id.recipeCalories).text = "Calorii: $calories Kcal"
-        findViewById<TextView>(R.id.recipeProtein).text = "Proteine: $protein g"
-        findViewById<TextView>(R.id.recipeCarbs).text = "Carbohidrați: $carbs g"
-        findViewById<TextView>(R.id.recipeFats).text = "Grăsimi: $fats g"
+        findViewById<TextView>(R.id.recipeCalories).text = getString(R.string.recipe_calories, calories)
+        findViewById<TextView>(R.id.recipeProtein).text = getString(R.string.recipe_protein, protein)
+        findViewById<TextView>(R.id.recipeCarbs).text = getString(R.string.recipe_carbs, carbs)
+        findViewById<TextView>(R.id.recipeFats).text = getString(R.string.recipe_fats, fats)
 
         // Dinamic pentru ingrediente
         val ingredientsContainer = findViewById<LinearLayout>(R.id.recipeIngredientsContainer)
@@ -47,7 +67,7 @@ class RecipeDetailsActivity : AppCompatActivity() {
         val ingredientsList = ingredients.split(",").map { it.trim() }
         for (ingredient in ingredientsList) {
             val textView = TextView(this).apply {
-                text = "- $ingredient" // Adaugă o liniuță înaintea fiecărui ingredient
+                text = getString(R.string.ingredient_item, ingredient) // Adaugă o liniuță înaintea fiecărui ingredient
                 textSize = 14f
                 setPadding(0, 8, 0, 8) // Adaugă un spațiu între ingrediente
             }

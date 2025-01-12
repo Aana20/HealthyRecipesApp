@@ -2,7 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/meniu_image"> <!-- Fundal aplicat aici -->
+    android:background="@drawable/meniu_image">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,17 +17,18 @@
             android:orientation="horizontal"
             android:gravity="center_vertical"
             android:layout_marginBottom="16dp"
-            android:background="@drawable/bg_search_bar"> <!-- Fundal pentru bara de căutare -->
+            android:background="@drawable/bg_search_bar">
 
             <EditText
                 android:id="@+id/searchEditText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:minHeight="48dp"
-                android:minWidth="48dp"
-                android:hint="Caută o rețetă"
-                android:padding="30dp"
+                android:importantForAutofill="no"
+                android:minHeight="49dp"
+                android:minWidth="49dp"
+                android:hint="@string/cauta_o_reteta"
+                android:padding="8dp"
                 android:inputType="text"/>
 
             <ImageView
@@ -35,7 +36,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_search"
-                android:contentDescription="Search icon"
+                android:contentDescription="@string/search_icon"
                 android:layout_marginStart="8dp"/>
         </LinearLayout>
 
@@ -43,22 +44,19 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="După felul de mâncare"
+            android:text="@string/dup_felul_de_mancare"
             android:textStyle="bold"
-            android:textSize="16dp"
+            android:textSize="16sp"
             android:textColor="#000000"
             android:drawablePadding="8dp"
             android:layout_marginBottom="8dp"/>
 
-
-        <!-- Grupul de CheckBox-uri împărțit în două rânduri -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_marginBottom="16dp">
 
-            <!-- Primul rând -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -70,7 +68,7 @@
                     android:layout_height="wrap_content"
                     android:minHeight="48dp"
                     android:minWidth="48dp"
-                    android:text="Mic dejun"/>
+                    android:text="@string/mic_dejun"/>
 
                 <CheckBox
                     android:id="@+id/checkBox_lunch"
@@ -78,7 +76,7 @@
                     android:layout_height="wrap_content"
                     android:minHeight="48dp"
                     android:minWidth="48dp"
-                    android:text="Pranz"/>
+                    android:text="@string/pranz"/>
 
                 <CheckBox
                     android:id="@+id/checkBox_diner"
@@ -86,10 +84,9 @@
                     android:layout_height="wrap_content"
                     android:minHeight="48dp"
                     android:minWidth="48dp"
-                    android:text="Cină"/>
+                    android:text="@string/cina"/>
             </LinearLayout>
 
-            <!-- Al doilea rând -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -101,7 +98,7 @@
                     android:layout_height="wrap_content"
                     android:minHeight="48dp"
                     android:minWidth="48dp"
-                    android:text="Deserturi sănătoase"/>
+                    android:text="@string/deserturi_sanatoase"/>
 
                 <CheckBox
                     android:id="@+id/checkBox_snacks"
@@ -109,15 +106,15 @@
                     android:layout_height="wrap_content"
                     android:minHeight="48dp"
                     android:minWidth="48dp"
-                    android:text="Gustări"/>
+                    android:text="@string/gustari"/>
             </LinearLayout>
-
         </LinearLayout>
+
         <!-- Secțiunea "După preferințe" -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="După preferințe"
+            android:text="@string/dupa_preferinte"
             android:textStyle="bold"
             android:textSize="16sp"
             android:textColor="#000000"
@@ -127,42 +124,55 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:layout_marginBottom="16dp">
 
-            <CheckBox
-                android:id="@+id/checkBox_sugar_free"
-                android:layout_width="wrap_content"
+            <!-- Primul rând -->
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="48dp"
-                android:minWidth="48dp"
-                android:text="Fără zahăr"/>
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp">
 
-            <CheckBox
-                android:id="@+id/checkBox_low_carb"
-                android:layout_width="wrap_content"
+                <CheckBox
+                    android:id="@+id/checkBox_sugar_free"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minHeight="48dp"
+                    android:minWidth="48dp"
+                    android:text="@string/fara_zahar"/>
+
+                <CheckBox
+                    android:id="@+id/checkBox_low_carb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minHeight="48dp"
+                    android:minWidth="48dp"
+                    android:text="@string/low_carb"/>
+            </LinearLayout>
+
+            <!-- Al doilea rând -->
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="48dp"
-                android:minWidth="48dp"
-                android:text="Low carb"/>
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp">
 
-
-            <CheckBox
-                android:id="@+id/checkBox_high_protein"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minHeight="48dp"
-                android:minWidth="48dp"
-                android:text="High protein"/>
-
-
+                <CheckBox
+                    android:id="@+id/checkBox_high_protein"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minHeight="48dp"
+                    android:minWidth="48dp"
+                    android:text="@string/high_protein"/>
+            </LinearLayout>
         </LinearLayout>
 
         <!-- Secțiunea "Alergeni" -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Alergeni"
+            android:text="@string/alergeni"
             android:textStyle="bold"
             android:textColor="#000000"
             android:textSize="16sp"
@@ -181,7 +191,7 @@
                 android:layout_height="wrap_content"
                 android:minHeight="48dp"
                 android:minWidth="48dp"
-                android:text="Fără gluten"/>
+                android:text="@string/fara_gluten"/>
 
             <CheckBox
                 android:id="@+id/checkBox_lactose_free"
@@ -189,52 +199,56 @@
                 android:layout_height="wrap_content"
                 android:minHeight="48dp"
                 android:minWidth="48dp"
-                android:text="Fără lactate"/>
+                android:text="@string/fara_lactate"/>
+
             <CheckBox
                 android:id="@+id/checkBox_egg_free"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:minHeight="48dp"
                 android:minWidth="48dp"
-                android:text="Fără ou"/>
+                android:text="@string/fara_ou"/>
         </LinearLayout>
 
         <!-- Secțiunea "După ingrediente" -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="După ingrediente"
+            android:text="@string/dupa_ingrediente"
             android:textStyle="bold"
             android:textSize="16sp"
             android:textColor="#000000"
             android:drawablePadding="8dp"
             android:layout_marginBottom="8dp"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginBottom="16dp">
 
-            <LinearLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:layout_marginBottom="16dp">
 
-            <CheckBox
-                android:id="@+id/checkBox_chicken"
-                android:layout_width="wrap_content"
+            <!-- Primul rând -->
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="48dp"
-                android:minWidth="48dp"
-                android:text="Pui"/>
+                android:orientation="horizontal"
+                android:layout_marginBottom="16dp">
 
-            <CheckBox
-                android:id="@+id/checkBox_ton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                <CheckBox
+                    android:id="@+id/checkBox_chicken"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minHeight="48dp"
+                    android:minWidth="48dp"
+                    android:text="@string/pui"/>
 
-                android:text="Ton"/>
+                <CheckBox
+                    android:id="@+id/checkBox_ton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minHeight="48dp"
+                    android:minWidth="48dp"
+                    android:text="@string/ton"/>
 
                 <CheckBox
                     android:id="@+id/checkBox_beef"
@@ -242,7 +256,7 @@
                     android:layout_height="wrap_content"
                     android:minHeight="48dp"
                     android:minWidth="48dp"
-                    android:text="Vita"/>
+                    android:text="@string/vita"/>
 
                 <CheckBox
                     android:id="@+id/checkBox_egg"
@@ -250,7 +264,7 @@
                     android:layout_height="wrap_content"
                     android:minHeight="48dp"
                     android:minWidth="48dp"
-                    android:text="Ou"/>
+                    android:text="@string/ou"/>
 
                 <CheckBox
                     android:id="@+id/checkBox_tofu"
@@ -258,52 +272,64 @@
                     android:layout_height="wrap_content"
                     android:minHeight="48dp"
                     android:minWidth="48dp"
-                    android:text="Tofu" />
+                    android:text="@string/tofu"/>
+            </LinearLayout>
+
+            <!-- Al doilea rând -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="16dp">
+
                 <CheckBox
                     android:id="@+id/checkBox_rice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:minHeight="48dp"
                     android:minWidth="48dp"
-                    android:text="Orez"/>
+                    android:text="@string/orez"/>
 
+                <CheckBox
+                    android:id="@+id/checkBox_ovaz"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minHeight="48dp"
+                    android:minWidth="48dp"
+                    android:text="@string/ovaz"/>
+
+                <CheckBox
+                    android:id="@+id/checkBox_brocoli"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minHeight="48dp"
+                    android:minWidth="48dp"
+                    android:text="@string/brocoli"/>
             </LinearLayout>
-        <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-            <CheckBox
-                android:id="@+id/checkBox_ovaz"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minHeight="48dp"
-                android:minWidth="48dp"
-                android:text="Ovaz" />
-            <CheckBox
-                android:id="@+id/checkBox_brocoli"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minHeight="48dp"
-                android:minWidth="48dp"
-                android:text="Brocoli"/>
 
-            <CheckBox
-                android:id="@+id/checkBox_avocado"
-                android:layout_width="wrap_content"
+            <!-- Al treilea rând -->
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="48dp"
-                android:minWidth="48dp"
-                android:text="Avocado"/>
-            <CheckBox
-                android:id="@+id/checkBox_cartof_dulce"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minHeight="48dp"
-                android:minWidth="48dp"
-                android:text="Cartof dulce"/>
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/checkBox_avocado"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minHeight="48dp"
+                    android:minWidth="48dp"
+                    android:text="@string/avocado"/>
+
+                <CheckBox
+                    android:id="@+id/checkBox_cartof_dulce"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minHeight="48dp"
+                    android:minWidth="48dp"
+                    android:text="@string/cartof_dulce"/>
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
-
 
         <!-- RecyclerView pentru afișarea rețetelor -->
         <androidx.recyclerview.widget.RecyclerView

@@ -3,6 +3,7 @@ package com.example.healthyrecipesapp
 //import RecipeDetailsActivity
 import android.content.Intent
 import android.os.Bundle
+
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -33,8 +34,8 @@ class RecipeListActivity : AppCompatActivity() {
                 putExtra("ingredients", recipe.ingredients)
                 putExtra("calories", recipe.calories)
                 putExtra("protein", recipe.protein) // Transmite valoarea reală
-                putExtra("carbs", recipe.carbs)     // Transmite valoarea reală
-                putExtra("fats", recipe.fats)       // Transmite valoarea reală
+                putExtra("carbs", recipe.carbs)
+                putExtra("fats", recipe.fats)
             }
             startActivity(intent)
         }
@@ -78,7 +79,7 @@ class RecipeListActivity : AppCompatActivity() {
 
             recipes.clear()
             recipes.addAll(filteredRecipes)
-            runOnUiThread {
+           runOnUiThread {
                 adapter.notifyDataSetChanged()
             }
         }

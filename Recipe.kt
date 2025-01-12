@@ -13,8 +13,8 @@ data class Recipe(
     val imageResId: String,
     val tags: String,
     val ingredients: String,
-    val instructions: String, // Modul de preparare
-    val protein: Int,         // Valorile nutriționale
+    val instructions: String,
+    val protein: Int,
     val carbs: Int,
     val fats: Int
 )
